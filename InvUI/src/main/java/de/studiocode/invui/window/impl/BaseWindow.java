@@ -1,5 +1,7 @@
 package de.studiocode.invui.window.impl;
 
+import de.studiocode.inventoryaccess.component.ComponentHolder;
+import de.studiocode.inventoryaccess.component.LegacyTextHolder;
 import de.studiocode.inventoryaccess.version.InventoryAccess;
 import de.studiocode.invui.InvUI;
 import de.studiocode.invui.gui.GUI;
@@ -15,7 +17,6 @@ import de.studiocode.invui.virtualinventory.event.PlayerUpdateReason;
 import de.studiocode.invui.virtualinventory.event.UpdateReason;
 import de.studiocode.invui.window.Window;
 import de.studiocode.invui.window.WindowManager;
-import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -39,11 +40,11 @@ public abstract class BaseWindow implements Window {
     private final boolean closeOnEvent;
     private final SlotElement[] elementsDisplayed;
     private final ArrayList<Runnable> closeHandlers = new ArrayList<>();
-    private BaseComponent[] title;
+    private ComponentHolder title;
     private boolean closeable;
     private boolean closed;
     
-    public BaseWindow(UUID viewerUUID, BaseComponent[] title, int size, boolean closeable, boolean closeOnEvent) {
+    public BaseWindow(UUID viewerUUID, ComponentHolder title, int size, boolean closeable, boolean closeOnEvent) {
         this.viewerUUID = viewerUUID;
         this.title = title;
         this.closeable = closeable;
@@ -234,7 +235,7 @@ public abstract class BaseWindow implements Window {
     }
     
     @Override
-    public void changeTitle(@NotNull BaseComponent[] title) {
+    public void changeTitle(@NotNull ComponentHolder title) {
         this.title = title;
         Player currentViewer = getCurrentViewer();
         if (currentViewer != null) {
@@ -244,7 +245,7 @@ public abstract class BaseWindow implements Window {
     
     @Override
     public void changeTitle(@NotNull String title) {
-        changeTitle(TextComponent.fromLegacyText(title));
+        changeTitle(LegacyTextHolder.of(title));
     }
     
     @Override

@@ -1,14 +1,14 @@
 package de.studiocode.invui.window.impl.merged.split;
 
 import de.studiocode.inventoryaccess.abstraction.inventory.CartographyInventory;
+import de.studiocode.inventoryaccess.component.ComponentHolder;
+import de.studiocode.inventoryaccess.component.LegacyTextHolder;
 import de.studiocode.inventoryaccess.map.MapIcon;
 import de.studiocode.inventoryaccess.map.MapPatch;
 import de.studiocode.inventoryaccess.version.InventoryAccess;
 import de.studiocode.invui.gui.GUI;
 import de.studiocode.invui.gui.impl.SimpleGUI;
 import de.studiocode.invui.util.MathUtils;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -23,18 +23,18 @@ public class CartographySplitWindow extends SplitWindow {
     private int mapId;
     
     public CartographySplitWindow(Player player, String title, GUI upperGui, GUI lowerGui) {
-        this(player, TextComponent.fromLegacyText(title), upperGui, lowerGui, true);
+        this(player, LegacyTextHolder.of(title), upperGui, lowerGui, true);
     }
     
     public CartographySplitWindow(Player player, String title, GUI upperGui, GUI lowerGui, boolean closeable) {
-        this(player, TextComponent.fromLegacyText(title), upperGui, lowerGui, closeable);
+        this(player, LegacyTextHolder.of(title), upperGui, lowerGui, closeable);
     }
     
-    public CartographySplitWindow(Player player, BaseComponent[] title, GUI upperGui, GUI lowerGui) {
+    public CartographySplitWindow(Player player, ComponentHolder title, GUI upperGui, GUI lowerGui) {
         this(player, title, upperGui, lowerGui, true);
     }
     
-    public CartographySplitWindow(Player player, BaseComponent[] title, GUI upperGui, GUI lowerGui, boolean closeable) {
+    public CartographySplitWindow(Player player, ComponentHolder title, GUI upperGui, GUI lowerGui, boolean closeable) {
         super(player, title, createWrappingGUI(upperGui), lowerGui, null, false, closeable, true);
         
         cartographyInventory = InventoryAccess.createCartographyInventory(player, title);

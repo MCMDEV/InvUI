@@ -41,13 +41,6 @@
     </dependencies>
 
     <modules>
-        <module>InventoryAccess/IA-R1</module>
-        <module>InventoryAccess/IA-R2</module>
-        <module>InventoryAccess/IA-R3</module>
-        <module>InventoryAccess/IA-R4</module>
-        <module>InventoryAccess/IA-R5</module>
-        <module>InventoryAccess/IA-R6</module>
-        <module>InventoryAccess/IA-R7</module>
         <module>InventoryAccess/IA-R8</module>
         <module>InventoryAccess/IA</module>
         <module>InvUI</module>

@@ -1,5 +1,6 @@
 package de.studiocode.invui.window;
 
+import de.studiocode.inventoryaccess.component.ComponentHolder;
 import de.studiocode.invui.gui.GUI;
 import de.studiocode.invui.gui.GUIParent;
 import de.studiocode.invui.item.Item;
@@ -9,7 +10,6 @@ import de.studiocode.invui.window.impl.merged.MergedWindow;
 import de.studiocode.invui.window.impl.merged.combined.SimpleCombinedWindow;
 import de.studiocode.invui.window.impl.merged.split.SimpleSplitWindow;
 import de.studiocode.invui.window.impl.single.SimpleWindow;
-import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -181,7 +181,7 @@ public interface Window extends GUIParent {
      *
      * @param title The new title
      */
-    void changeTitle(@NotNull BaseComponent[] title);
+    void changeTitle(@NotNull ComponentHolder title);
     
     /**
      * Changes the title of the {@link Inventory}.

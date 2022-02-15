@@ -1,12 +1,12 @@
 package de.studiocode.invui.resourcepack;
 
+import de.studiocode.inventoryaccess.component.ComponentHolder;
 import de.studiocode.inventoryaccess.util.ReflectionRegistry;
 import de.studiocode.inventoryaccess.util.VersionUtils;
 import de.studiocode.inventoryaccess.version.InventoryAccess;
 import de.studiocode.invui.InvUI;
 import de.studiocode.invui.resourcepack.auth.AuthenticationServiceManager;
 import de.studiocode.invui.util.DataUtils;
-import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,7 +37,7 @@ public class ForceResourcePack implements Listener {
     private final HashMap<Player, BukkitTask> tasks = new HashMap<>();
     
     private String resourcePackUrl;
-    private BaseComponent[] prompt;
+    private ComponentHolder prompt;
     private byte[] hash;
     
     private ForceResourcePack() {
@@ -63,7 +63,7 @@ public class ForceResourcePack implements Listener {
      * @param resourcePackUrl The ResourcePack URL String
      * @param prompt          The prompt to be displayed (since 1.17)
      */
-    public void setResourcePack(@Nullable String resourcePackUrl, @Nullable BaseComponent[] prompt) {
+    public void setResourcePack(@Nullable String resourcePackUrl, @Nullable ComponentHolder prompt) {
         setResourcePack(resourcePackUrl, prompt, true);
     }
     
@@ -75,7 +75,7 @@ public class ForceResourcePack implements Listener {
      * @param prompt              The prompt to be displayed (since 1.17)
      * @param sendToOnlinePlayers If the resource pack should also be sent to all currently online players
      */
-    public void setResourcePack(@Nullable String resourcePackUrl, @Nullable BaseComponent[] prompt, boolean sendToOnlinePlayers) {
+    public void setResourcePack(@Nullable String resourcePackUrl, @Nullable ComponentHolder prompt, boolean sendToOnlinePlayers) {
         this.prompt = prompt;
         
         if (resourcePackUrl != null) {

@@ -1,10 +1,10 @@
 package de.studiocode.invui.window.impl.single;
 
 import de.studiocode.inventoryaccess.abstraction.inventory.AnvilInventory;
+import de.studiocode.inventoryaccess.component.ComponentHolder;
+import de.studiocode.inventoryaccess.component.LegacyTextHolder;
 import de.studiocode.inventoryaccess.version.InventoryAccess;
 import de.studiocode.invui.gui.GUI;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,7 +14,7 @@ public class AnvilWindow extends SingleWindow {
     
     private final AnvilInventory anvilInventory;
     
-    public AnvilWindow(Player player, BaseComponent[] title, GUI gui, boolean closable, Consumer<String> renameHandler) {
+    public AnvilWindow(Player player, ComponentHolder title, GUI gui, boolean closable, Consumer<String> renameHandler) {
         super(player.getUniqueId(), title, gui, null, false, closable, true);
         anvilInventory = InventoryAccess.createAnvilInventory(player, title, renameHandler);
         inventory = anvilInventory.getBukkitInventory();
@@ -23,14 +23,14 @@ public class AnvilWindow extends SingleWindow {
     }
     
     public AnvilWindow(Player player, String title, GUI gui, boolean closeable, Consumer<String> renameHandler) {
-        this(player, TextComponent.fromLegacyText(title), gui, closeable, renameHandler);
+        this(player, LegacyTextHolder.of(title), gui, closeable, renameHandler);
     }
     
     public AnvilWindow(Player player, String title, GUI gui, Consumer<String> renameHandler) {
         this(player, title, gui, true, renameHandler);
     }
     
-    public AnvilWindow(Player player, BaseComponent[] title, GUI gui, Consumer<String> renameHandler) {
+    public AnvilWindow(Player player, ComponentHolder title, GUI gui, Consumer<String> renameHandler) {
         this(player, title, gui, true, renameHandler);
     }
     

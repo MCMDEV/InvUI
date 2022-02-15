@@ -1,6 +1,6 @@
 package de.studiocode.inventoryaccess.abstraction.util;
 
-import net.md_5.bungee.api.chat.BaseComponent;
+import de.studiocode.inventoryaccess.component.ComponentHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
@@ -55,16 +55,16 @@ public interface ItemUtils {
      * Sets the display name of an {@link ItemMeta}
      *
      * @param itemMeta The {@link ItemMeta}
-     * @param name     The display name as a {@link BaseComponent BaseComponent[]}
+     * @param name     The display name as a {@link ComponentHolder}
      */
-    void setDisplayName(@NotNull ItemMeta itemMeta, @NotNull BaseComponent[] name);
+    void setDisplayName(@NotNull ItemMeta itemMeta, @NotNull ComponentHolder name);
     
     /**
      * Sets the lore of an {@link ItemMeta}
      *
      * @param itemMeta The {@link ItemMeta}
-     * @param lore     The lore as a list of {@link BaseComponent BaseComponent[]}
+     * @param lore     The lore as a list of {@link ComponentHolder}
      */
-    void setLore(@NotNull ItemMeta itemMeta, @NotNull List<@NotNull BaseComponent[]> lore);
+    void setLore(@NotNull ItemMeta itemMeta, @NotNull List<@NotNull ComponentHolder> lore);
     
 }

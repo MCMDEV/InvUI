@@ -1,16 +1,16 @@
 package de.studiocode.invui.resourcepack;
 
+import de.studiocode.inventoryaccess.component.ComponentHolder;
 import de.studiocode.invui.item.Item;
 import de.studiocode.invui.item.builder.ItemBuilder;
 import de.studiocode.invui.item.impl.SimpleItem;
-import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Material;
 
 /**
  * Custom-textured Items that look like they are a part of the inventory.
  * Needs the resource pack to work, activate ResourcePack forcing and
  * choose between the lightweight or complete version using
- * {@link ForceResourcePack#setResourcePack(String, BaseComponent[])}.
+ * {@link ForceResourcePack#setResourcePack(String, ComponentHolder)}.
  */
 public enum Icon {
     

@@ -1,11 +1,12 @@
 package de.studiocode.invui.item.builder;
 
+import de.studiocode.inventoryaccess.component.BungeeComponentHolder;
+import de.studiocode.inventoryaccess.component.ComponentHolder;
 import de.studiocode.inventoryaccess.version.InventoryAccess;
 import de.studiocode.invui.item.ItemProvider;
 import de.studiocode.invui.util.ComponentUtils;
 import de.studiocode.invui.util.Pair;
 import de.studiocode.invui.window.impl.BaseWindow;
-import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -26,8 +27,8 @@ abstract class BaseItemBuilder<T> implements ItemProvider {
     protected int amount = 1;
     protected int damage;
     protected int customModelData;
-    protected BaseComponent[] displayName;
-    protected List<BaseComponent[]> lore;
+    protected ComponentHolder displayName;
+    protected List<ComponentHolder> lore;
     protected List<ItemFlag> itemFlags;
     protected HashMap<Enchantment, Pair<Integer, Boolean>> enchantments;
     protected List<Function<ItemStack, ItemStack>> modifiers;
@@ -143,6 +144,7 @@ abstract class BaseItemBuilder<T> implements ItemProvider {
     public T setLegacyLore(@NotNull List<String> lore) {
         this.lore = lore.stream()
             .map(ComponentUtils::withoutPreFormatting)
+            .map(BungeeComponentHolder::of)
             .collect(Collectors.toList());
         return getThis();
     }
@@ -151,14 +153,14 @@ abstract class BaseItemBuilder<T> implements ItemProvider {
         if (lore == null) lore = new ArrayList<>();
         
         for (String line : lines)
-            lore.add(ComponentUtils.withoutPreFormatting(line));
+            lore.add(BungeeComponentHolder.of(ComponentUtils.withoutPreFormatting(line)));
         return getThis();
     }
     
-    public T addLoreLines(@NotNull BaseComponent[]... lines) {
+    public T addLoreLines(@NotNull ComponentHolder... lines) {
         if (lore == null) lore = new ArrayList<>();
         
-        lore.addAll(Arrays.stream(lines).map(ComponentUtils::withoutPreFormatting).collect(Collectors.toList()));
+        lore.addAll(List.of(lines));
         return getThis();
     }
     
@@ -257,25 +259,25 @@ abstract class BaseItemBuilder<T> implements ItemProvider {
         return getThis();
     }
     
-    public BaseComponent[] getDisplayName() {
+    public ComponentHolder getDisplayName() {
         return displayName;
     }
     
     public T setDisplayName(String displayName) {
-        this.displayName = ComponentUtils.withoutPreFormatting(displayName);
+        this.displayName = BungeeComponentHolder.of(ComponentUtils.withoutPreFormatting(displayName));
         return getThis();
     }
     
-    public T setDisplayName(BaseComponent... displayName) {
-        this.displayName = ComponentUtils.withoutPreFormatting(displayName);
+    public T setDisplayName(ComponentHolder displayName) {
+        this.displayName = displayName;
         return getThis();
     }
     
-    public List<BaseComponent[]> getLore() {
+    public List<ComponentHolder> getLore() {
         return lore;
     }
     
-    public T setLore(List<BaseComponent[]> lore) {
+    public T setLore(List<ComponentHolder> lore) {
         this.lore = lore;
         return getThis();
     }

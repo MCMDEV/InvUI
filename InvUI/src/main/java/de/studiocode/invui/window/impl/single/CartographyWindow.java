@@ -1,13 +1,13 @@
 package de.studiocode.invui.window.impl.single;
 
 import de.studiocode.inventoryaccess.abstraction.inventory.CartographyInventory;
+import de.studiocode.inventoryaccess.component.ComponentHolder;
+import de.studiocode.inventoryaccess.component.LegacyTextHolder;
 import de.studiocode.inventoryaccess.map.MapIcon;
 import de.studiocode.inventoryaccess.map.MapPatch;
 import de.studiocode.inventoryaccess.version.InventoryAccess;
 import de.studiocode.invui.gui.GUI;
 import de.studiocode.invui.util.MathUtils;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -24,18 +24,18 @@ public class CartographyWindow extends SingleWindow {
     private int mapId;
     
     public CartographyWindow(Player player, String title, GUI gui) {
-        this(player, TextComponent.fromLegacyText(title), gui, true);
+        this(player, LegacyTextHolder.of(title), gui, true);
     }
     
     public CartographyWindow(Player player, String title, GUI gui, boolean closeable) {
-        this(player, TextComponent.fromLegacyText(title), gui, closeable);
+        this(player, LegacyTextHolder.of(title), gui, closeable);
     }
     
-    public CartographyWindow(Player player, BaseComponent[] title, GUI gui) {
+    public CartographyWindow(Player player, ComponentHolder title, GUI gui) {
         this(player, title, gui, true);
     }
     
-    public CartographyWindow(Player player, BaseComponent[] title, GUI gui, boolean closeable) {
+    public CartographyWindow(Player player, ComponentHolder title, GUI gui, boolean closeable) {
         super(player.getUniqueId(), title, gui, null, false, closeable, true);
         if (gui.getWidth() != 2 || gui.getHeight() != 1) throw new IllegalArgumentException("GUI has to be 2x1");
         
